@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -119,6 +120,20 @@ public class TutorialController {
 			return new ResponseEntity<>(tutorials, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+
+
+	//Eliminar Tutorial por title
+	@DeleteMapping(path = "/tutorials/delete/{title}")
+	@Transactional
+	public String deleteByTitle(@PathVariable("title") String title) {
+		try {
+			tutorialRepository.deleteByTitle(title);
+			return "Se elimino el tutoral exitosamente!";
+
+		} catch (Exception e) {
+			return "Something went wrong!";
 		}
 	}
 

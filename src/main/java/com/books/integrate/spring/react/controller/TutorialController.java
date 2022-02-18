@@ -150,7 +150,7 @@ public class TutorialController {
 			_tutorial.setTitle(tutorial.getTitle());
 			_tutorial.setDescription(tutorial.getDescription());
 			_tutorial.setPublished(tutorial.isPublished());
-//			_tutorial.setPrice(tutorial.getPrice());
+			_tutorial.setPrice(tutorial.getPrice());
 
 			return tutorialRepository.save(_tutorial);
 		} else {
@@ -161,7 +161,7 @@ public class TutorialController {
 	//METODO PARA OBTENER EL TUTORIAL POR EL PRECIO
 	@GetMapping(path = "/tutorials/price/{price}")
 	public ArrayList<Tutorial> getByPrice(@PathVariable("price") Double price) {
-		return
+		return tutorialRepository.getByPrice(price);
 	}
 
 }

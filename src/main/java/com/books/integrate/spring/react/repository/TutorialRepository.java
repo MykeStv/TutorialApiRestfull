@@ -1,5 +1,6 @@
 package com.books.integrate.spring.react.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
 	List<Tutorial> findByTitleContaining(String title);
 	Optional<Tutorial> findByTitle(String title);
 	void deleteByTitle(String title);
-	
+	ArrayList<Tutorial> getByPrice(Double price);
 
 
 }

@@ -34,3 +34,15 @@ _Se escribe el titulo en el path, luego se modifica description y published_
 ![](./screenshots/api_update2.png)
 _Los cambios fueron guardados correctamente_
 ![](./screenshots/api_update3.png)
+
+### getByPrice  
+
+Metodo para obtener los tutorial por el precio
+
+- path --> http://localhost:8080/api/tutorials/price/{price}
+- Request http : GET
+- Devuelve lista de entidades  
+
+screenshot:  
+_Solo dos tutoriales tienen el precio de 170000_
+![](./screenshots/api_price.png)

@@ -129,12 +129,22 @@ public class TutorialController {
 	@Transactional
 	public String deleteByTitle(@PathVariable("title") String title) {
 		try {
-			tutorialRepository.deleteByTitle(title);
-			return "Se elimino el tutoral exitosamente!";
-
+			Optional<Tutorial> tutorial = tutorialRepository.findByTitle(title);
+			if (tutorial.isPresent()) {
+				tutorialRepository.deleteByTitle(title);
+				return "Se elimino el tutoral exitosamente!";
+			} else {
+				return "No se encontró el curso por ese titulo";
+			}
 		} catch (Exception e) {
 			return "Something went wrong!";
 		}
 	}
+
+	//METODO ACTUALIZAR UN TUTORIAL POR EL TITULO
+	/*@PutMapping(path = "/tutorials/update/{title}")
+	public Tutorial updateByTitle(@PathVariable("title") String title,@RequestBody Tutorial tutorial){
+
+	}*/
 
 }

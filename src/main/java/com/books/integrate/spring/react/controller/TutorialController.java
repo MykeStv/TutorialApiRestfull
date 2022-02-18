@@ -142,9 +142,19 @@ public class TutorialController {
 	}
 
 	//METODO ACTUALIZAR UN TUTORIAL POR EL TITULO
-	/*@PutMapping(path = "/tutorials/update/{title}")
+	@PutMapping(path = "/tutorials/update/{title}")
 	public Tutorial updateByTitle(@PathVariable("title") String title,@RequestBody Tutorial tutorial){
+		Optional<Tutorial> tutorialToUpdate = tutorialRepository.findByTitle(title);
+		if (tutorialToUpdate.isPresent()) {
+			Tutorial _tutorial = tutorialToUpdate.get();
+			_tutorial.setTitle(tutorial.getTitle());
+			_tutorial.setDescription(tutorial.getDescription());
+			_tutorial.setPublished(tutorial.isPublished());
 
-	}*/
+			return tutorialRepository.save(_tutorial);
+		} else {
+			return null;
+		}
+	}
 
 }
